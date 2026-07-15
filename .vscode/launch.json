@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-LibraryManagementApp<library-management>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.dickson.libraryapp.LibraryManagementApp",
+            "projectName": "library-management",
+            "args": "--spring.profiles.active=dev",
+            "envFile": "${workspaceFolder}/.env",
+            "console": "internalConsole",
+            "internalConsoleOptions": "openOnSessionStart"
+        }
+    ]
+}
