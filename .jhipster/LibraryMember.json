@@ -1,0 +1,62 @@
+{
+  "annotations": {
+    "changelogDate": "20260715142140"
+  },
+  "applications": ["*"],
+  "documentation": "==========================================================\\nENTITIES\\n==========================================================",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "membershipNumber",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "phoneNumber",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "20"
+    },
+    {
+      "fieldName": "birthDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "address",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "255"
+    },
+    {
+      "fieldName": "registrationDate",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "LibraryMemberStatus",
+      "fieldTypeDocumentation": "==========================================================\\nENUMS\\n==========================================================",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "ACTIVE,BLOCKED,SUSPENDED"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "LibraryMember",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "options": {
+        "id": true,
+        "onDelete": "CASCADE"
+      },
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "relationshipName": "internalUser",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one",
+      "relationshipWithBuiltInEntity": true
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

@@ -1,0 +1,28 @@
+{
+  "libraryManagementApp": {
+    "bookCopy": {
+      "home": {
+        "title": "Book Copies",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Book Copy",
+        "createOrEditLabel": "Crear o editar Book Copy",
+        "notFound": "Ningún Book Copies encontrado"
+      },
+      "created": "Un nuevo Book Copy ha sido creado con el identificador {{ param }}",
+      "updated": "Un Book Copy ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Book Copy ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Book Copy {{ id }}?"
+      },
+      "detail": {
+        "title": "Book Copy"
+      },
+      "id": "ID",
+      "barcode": "Barcode",
+      "shelfLocation": "Shelf Location",
+      "acquisitionDate": "Acquisition Date",
+      "status": "Status",
+      "book": "Book"
+    }
+  }
+}

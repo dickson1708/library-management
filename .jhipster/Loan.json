@@ -1,0 +1,62 @@
+{
+  "annotations": {
+    "changelogDate": "20260715142144"
+  },
+  "applications": ["*"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "loanDate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dueDate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "returnDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "renewals",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "notes",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "500"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "LoanStatus",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "ACTIVE,RETURNED,OVERDUE,LOST"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Loan",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "membershipNumber",
+      "otherEntityName": "libraryMember",
+      "relationshipName": "member",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "barcode",
+      "otherEntityName": "bookCopy",
+      "relationshipName": "bookCopy",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

@@ -1,0 +1,12 @@
+{
+  "libraryManagementApp": {
+    "ReservationStatus": {
+      "null": "",
+      "PENDING": "PENDING",
+      "READY": "READY",
+      "CANCELLED": "CANCELLED",
+      "EXPIRED": "EXPIRED",
+      "COMPLETED": "COMPLETED"
+    }
+  }
+}

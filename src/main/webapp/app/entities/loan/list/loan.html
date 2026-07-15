@@ -1,0 +1,173 @@
+<div>
+  <h2 id="page-heading" data-cy="LoanHeading">
+    <span jhiTranslate="libraryManagementApp.loan.home.title">Loans</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading()">
+        <fa-icon icon="sync" [animation]="isLoading() ? 'spin' : undefined" />
+        <span jhiTranslate="libraryManagementApp.loan.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-loan"
+        [routerLink]="['/loan/new']"
+      >
+        <fa-icon icon="plus" />
+        <span jhiTranslate="libraryManagementApp.loan.home.createLabel">Create a new Loan</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  <jhi-filter [filters]="filters" />
+
+  @if (loans().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="libraryManagementApp.loan.home.notFound">No Loans found</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort" />
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="loanDate">
+              <div class="d-flex">
+                <span jhiTranslate="libraryManagementApp.loan.loanDate">Loan Date</span>
+
+                <fa-icon class="p-1" icon="sort" />
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dueDate">
+              <div class="d-flex">
+                <span jhiTranslate="libraryManagementApp.loan.dueDate">Due Date</span>
+
+                <fa-icon class="p-1" icon="sort" />
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="returnDate">
+              <div class="d-flex">
+                <span jhiTranslate="libraryManagementApp.loan.returnDate">Return Date</span>
+
+                <fa-icon class="p-1" icon="sort" />
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="renewals">
+              <div class="d-flex">
+                <span jhiTranslate="libraryManagementApp.loan.renewals">Renewals</span>
+
+                <fa-icon class="p-1" icon="sort" />
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="notes">
+              <div class="d-flex">
+                <span jhiTranslate="libraryManagementApp.loan.notes">Notes</span>
+
+                <fa-icon class="p-1" icon="sort" />
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="status">
+              <div class="d-flex">
+                <span jhiTranslate="libraryManagementApp.loan.status">Status</span>
+
+                <fa-icon class="p-1" icon="sort" />
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="member.membershipNumber">
+              <div class="d-flex">
+                <span jhiTranslate="libraryManagementApp.loan.member">Member</span>
+                <fa-icon class="p-1" icon="sort" />
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="bookCopy.barcode">
+              <div class="d-flex">
+                <span jhiTranslate="libraryManagementApp.loan.bookCopy">Book Copy</span>
+                <fa-icon class="p-1" icon="sort" />
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (loan of loans(); track trackId(loan)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/loan', loan.id, 'view']">{{ loan.id }}</a>
+              </td>
+              <td>{{ loan.loanDate | formatMediumDatetime }}</td>
+              <td>{{ loan.dueDate | formatMediumDatetime }}</td>
+              <td>{{ loan.returnDate | formatMediumDatetime }}</td>
+              <td>{{ loan.renewals }}</td>
+              <td>{{ loan.notes }}</td>
+              <td [jhiTranslate]="'libraryManagementApp.LoanStatus.' + (loan.status ?? 'null')">
+                {{ { null: '', ACTIVE: 'ACTIVE', RETURNED: 'RETURNED', OVERDUE: 'OVERDUE', LOST: 'LOST' }[loan.status ?? 'null'] }}
+              </td>
+              <td>
+                @if (loan.member) {
+                  <div>
+                    <a [routerLink]="['/library-member', loan.member.id, 'view']">{{ loan.member.membershipNumber }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (loan.bookCopy) {
+                  <div>
+                    <a [routerLink]="['/book-copy', loan.bookCopy.id, 'view']">{{ loan.bookCopy.barcode }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/loan', loan.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye" />
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a [routerLink]="['/loan', loan.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt" />
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(loan)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times" />
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (loans().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page(), totalItems: totalItems(), itemsPerPage: itemsPerPage() }" />
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems()"
+          [page]="page()"
+          [pageSize]="itemsPerPage()"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        />
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,122 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-book-copy-heading"
+        data-cy="BookCopyCreateUpdateHeading"
+        jhiTranslate="libraryManagementApp.bookCopy.home.createOrEditLabel"
+      >
+        Create or edit a Book Copy
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="global.field.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let barcodeRef = editForm.get('barcode')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_barcode" jhiTranslate="libraryManagementApp.bookCopy.barcode">Barcode</label>
+          <input type="text" class="form-control" name="barcode" id="field_barcode" data-cy="barcode" formControlName="barcode" />
+          @if (barcodeRef.invalid && (barcodeRef.dirty || barcodeRef.touched)) {
+            <div>
+              @if (editForm.get('barcode')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let shelfLocationRef = editForm.get('shelfLocation')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_shelfLocation" jhiTranslate="libraryManagementApp.bookCopy.shelfLocation"
+            >Shelf Location</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="shelfLocation"
+            id="field_shelfLocation"
+            data-cy="shelfLocation"
+            formControlName="shelfLocation"
+          />
+          @if (shelfLocationRef.invalid && (shelfLocationRef.dirty || shelfLocationRef.touched)) {
+            <div>
+              @if (editForm.get('shelfLocation')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_acquisitionDate" jhiTranslate="libraryManagementApp.bookCopy.acquisitionDate"
+            >Acquisition Date</label
+          >
+          <div class="input-group">
+            <input
+              id="field_acquisitionDate"
+              data-cy="acquisitionDate"
+              type="text"
+              class="form-control"
+              name="acquisitionDate"
+              ngbDatepicker
+              #acquisitionDateDp="ngbDatepicker"
+              formControlName="acquisitionDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="acquisitionDateDp.toggle()"><fa-icon icon="calendar-alt" /></button>
+          </div>
+        </div>
+
+        @let statusRef = editForm.get('status')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_status" jhiTranslate="libraryManagementApp.bookCopy.status">Status</label>
+          <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
+            <option [ngValue]="null">{{ 'libraryManagementApp.BookCopyStatus.null' | translate }}</option>
+            @for (bookCopyStatus of bookCopyStatusValues; track $index) {
+              <option [value]="bookCopyStatus">{{ 'libraryManagementApp.BookCopyStatus.' + bookCopyStatus | translate }}</option>
+            }
+          </select>
+          @if (statusRef.invalid && (statusRef.dirty || statusRef.touched)) {
+            <div>
+              @if (editForm.get('status')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_book" jhiTranslate="libraryManagementApp.bookCopy.book">Book</label>
+          <select class="form-control" id="field_book" data-cy="book" name="book" formControlName="book" [compareWith]="compareBook">
+            <option [ngValue]="null"></option>
+            @for (bookOption of booksSharedCollection(); track $index) {
+              <option [ngValue]="bookOption">{{ bookOption.title }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban" />&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving()"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save" />&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

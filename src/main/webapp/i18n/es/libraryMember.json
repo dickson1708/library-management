@@ -1,0 +1,30 @@
+{
+  "libraryManagementApp": {
+    "libraryMember": {
+      "home": {
+        "title": "Library Members",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Library Member",
+        "createOrEditLabel": "Crear o editar Library Member",
+        "notFound": "Ningún Library Members encontrado"
+      },
+      "created": "Un nuevo Library Member ha sido creado con el identificador {{ param }}",
+      "updated": "Un Library Member ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Library Member ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Library Member {{ id }}?"
+      },
+      "detail": {
+        "title": "Library Member"
+      },
+      "id": "ID",
+      "membershipNumber": "Membership Number",
+      "phoneNumber": "Phone Number",
+      "birthDate": "Birth Date",
+      "address": "Address",
+      "registrationDate": "Registration Date",
+      "status": "Status",
+      "internalUser": "Internal User"
+    }
+  }
+}

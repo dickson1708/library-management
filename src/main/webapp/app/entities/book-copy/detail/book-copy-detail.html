@@ -1,0 +1,64 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (bookCopy(); as bookCopyRef) {
+      <div>
+        <h2 data-cy="bookCopyDetailsHeading"><span jhiTranslate="libraryManagementApp.bookCopy.detail.title">Book Copy</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ bookCopyRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.bookCopy.barcode">Barcode</span></dt>
+          <dd>
+            <span>{{ bookCopyRef.barcode }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.bookCopy.shelfLocation">Shelf Location</span></dt>
+          <dd>
+            <span>{{ bookCopyRef.shelfLocation }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.bookCopy.acquisitionDate">Acquisition Date</span></dt>
+          <dd>
+            <span>{{ bookCopyRef.acquisitionDate | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.bookCopy.status">Status</span></dt>
+          <dd>
+            <span [jhiTranslate]="'libraryManagementApp.BookCopyStatus.' + (bookCopyRef.status ?? 'null')">{{
+              {
+                null: '',
+                AVAILABLE: 'AVAILABLE',
+                LOANED: 'LOANED',
+                RESERVED: 'RESERVED',
+                LOST: 'LOST',
+                DAMAGED: 'DAMAGED',
+                REPAIR: 'REPAIR',
+              }[bookCopyRef.status ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.bookCopy.book">Book</span></dt>
+          <dd>
+            @if (bookCopy()!.book) {
+              <div>
+                <a [routerLink]="['/book', bookCopy()!.book?.id, 'view']">{{ bookCopyRef.book?.title }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left" />&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/book-copy', bookCopyRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt" />&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

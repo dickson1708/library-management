@@ -1,0 +1,43 @@
+{
+  "annotations": {
+    "changelogDate": "20260715142143"
+  },
+  "applications": ["*"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "barcode",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "shelfLocation",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "acquisitionDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "BookCopyStatus",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "AVAILABLE,LOANED,RESERVED,LOST,DAMAGED,REPAIR"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "BookCopy",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "book",
+      "relationshipName": "book",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

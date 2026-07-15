@@ -44,6 +44,13 @@ public class CacheConfiguration {
             createCache(cm, com.dickson.libraryapp.domain.User.class.getName());
             createCache(cm, com.dickson.libraryapp.domain.Authority.class.getName());
             createCache(cm, com.dickson.libraryapp.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.dickson.libraryapp.domain.LibraryMember.class.getName());
+            createCache(cm, com.dickson.libraryapp.domain.Category.class.getName());
+            createCache(cm, com.dickson.libraryapp.domain.Book.class.getName());
+            createCache(cm, com.dickson.libraryapp.domain.BookCopy.class.getName());
+            createCache(cm, com.dickson.libraryapp.domain.Loan.class.getName());
+            createCache(cm, com.dickson.libraryapp.domain.Reservation.class.getName());
+            createCache(cm, com.dickson.libraryapp.domain.Review.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

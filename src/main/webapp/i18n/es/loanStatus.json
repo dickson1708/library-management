@@ -1,0 +1,11 @@
+{
+  "libraryManagementApp": {
+    "LoanStatus": {
+      "null": "",
+      "ACTIVE": "ACTIVE",
+      "RETURNED": "RETURNED",
+      "OVERDUE": "OVERDUE",
+      "LOST": "LOST"
+    }
+  }
+}

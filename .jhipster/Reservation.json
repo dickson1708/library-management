@@ -1,0 +1,49 @@
+{
+  "annotations": {
+    "changelogDate": "20260715142145"
+  },
+  "applications": ["*"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "reservationDate",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "expirationDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "queuePosition",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "ReservationStatus",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "PENDING,READY,CANCELLED,EXPIRED,COMPLETED"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Reservation",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "membershipNumber",
+      "otherEntityName": "libraryMember",
+      "relationshipName": "member",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "book",
+      "relationshipName": "book",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

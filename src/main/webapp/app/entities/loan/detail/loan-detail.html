@@ -1,0 +1,72 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (loan(); as loanRef) {
+      <div>
+        <h2 data-cy="loanDetailsHeading"><span jhiTranslate="libraryManagementApp.loan.detail.title">Loan</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ loanRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.loan.loanDate">Loan Date</span></dt>
+          <dd>
+            <span>{{ loanRef.loanDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.loan.dueDate">Due Date</span></dt>
+          <dd>
+            <span>{{ loanRef.dueDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.loan.returnDate">Return Date</span></dt>
+          <dd>
+            <span>{{ loanRef.returnDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.loan.renewals">Renewals</span></dt>
+          <dd>
+            <span>{{ loanRef.renewals }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.loan.notes">Notes</span></dt>
+          <dd>
+            <span>{{ loanRef.notes }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.loan.status">Status</span></dt>
+          <dd>
+            <span [jhiTranslate]="'libraryManagementApp.LoanStatus.' + (loanRef.status ?? 'null')">{{
+              { null: '', ACTIVE: 'ACTIVE', RETURNED: 'RETURNED', OVERDUE: 'OVERDUE', LOST: 'LOST' }[loanRef.status ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.loan.member">Member</span></dt>
+          <dd>
+            @if (loan()!.member) {
+              <div>
+                <a [routerLink]="['/library-member', loan()!.member?.id, 'view']">{{ loanRef.member?.membershipNumber }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.loan.bookCopy">Book Copy</span></dt>
+          <dd>
+            @if (loan()!.bookCopy) {
+              <div>
+                <a [routerLink]="['/book-copy', loan()!.bookCopy?.id, 'view']">{{ loanRef.bookCopy?.barcode }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left" />&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/loan', loanRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt" />&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

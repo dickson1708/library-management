@@ -1,0 +1,28 @@
+{
+  "libraryManagementApp": {
+    "review": {
+      "home": {
+        "title": "Reviews",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Review",
+        "createOrEditLabel": "Crear o editar Review",
+        "notFound": "Ningún Reviews encontrado"
+      },
+      "created": "Un nuevo Review ha sido creado con el identificador {{ param }}",
+      "updated": "Un Review ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Review ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Review {{ id }}?"
+      },
+      "detail": {
+        "title": "Review"
+      },
+      "id": "ID",
+      "rating": "Rating",
+      "comment": "Comment",
+      "createdDate": "Created Date",
+      "member": "Member",
+      "book": "Book"
+    }
+  }
+}

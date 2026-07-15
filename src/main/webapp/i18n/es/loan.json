@@ -1,0 +1,31 @@
+{
+  "libraryManagementApp": {
+    "loan": {
+      "home": {
+        "title": "Loans",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Loan",
+        "createOrEditLabel": "Crear o editar Loan",
+        "notFound": "Ningún Loans encontrado"
+      },
+      "created": "Un nuevo Loan ha sido creado con el identificador {{ param }}",
+      "updated": "Un Loan ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Loan ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Loan {{ id }}?"
+      },
+      "detail": {
+        "title": "Loan"
+      },
+      "id": "ID",
+      "loanDate": "Loan Date",
+      "dueDate": "Due Date",
+      "returnDate": "Return Date",
+      "renewals": "Renewals",
+      "notes": "Notes",
+      "status": "Status",
+      "member": "Member",
+      "bookCopy": "Book Copy"
+    }
+  }
+}

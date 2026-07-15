@@ -1,0 +1,10 @@
+{
+  "libraryManagementApp": {
+    "LibraryMemberStatus": {
+      "null": "",
+      "ACTIVE": "ACTIVE",
+      "BLOCKED": "BLOCKED",
+      "SUSPENDED": "SUSPENDED"
+    }
+  }
+}

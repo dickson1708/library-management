@@ -1,0 +1,13 @@
+{
+  "libraryManagementApp": {
+    "BookCopyStatus": {
+      "null": "",
+      "AVAILABLE": "AVAILABLE",
+      "LOANED": "LOANED",
+      "RESERVED": "RESERVED",
+      "LOST": "LOST",
+      "DAMAGED": "DAMAGED",
+      "REPAIR": "REPAIR"
+    }
+  }
+}

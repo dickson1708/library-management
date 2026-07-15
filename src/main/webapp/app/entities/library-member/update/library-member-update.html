@@ -1,0 +1,193 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-library-member-heading"
+        data-cy="LibraryMemberCreateUpdateHeading"
+        jhiTranslate="libraryManagementApp.libraryMember.home.createOrEditLabel"
+      >
+        Create or edit a Library Member
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="global.field.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let membershipNumberRef = editForm.get('membershipNumber')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_membershipNumber" jhiTranslate="libraryManagementApp.libraryMember.membershipNumber"
+            >Membership Number</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="membershipNumber"
+            id="field_membershipNumber"
+            data-cy="membershipNumber"
+            formControlName="membershipNumber"
+          />
+          @if (membershipNumberRef.invalid && (membershipNumberRef.dirty || membershipNumberRef.touched)) {
+            <div>
+              @if (editForm.get('membershipNumber')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('membershipNumber')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >This field should be a number.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let phoneNumberRef = editForm.get('phoneNumber')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_phoneNumber" jhiTranslate="libraryManagementApp.libraryMember.phoneNumber"
+            >Phone Number</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="phoneNumber"
+            id="field_phoneNumber"
+            data-cy="phoneNumber"
+            formControlName="phoneNumber"
+          />
+          @if (phoneNumberRef.invalid && (phoneNumberRef.dirty || phoneNumberRef.touched)) {
+            <div>
+              @if (editForm.get('phoneNumber')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              @if (editForm.get('phoneNumber')?.errors?.maxlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: '20' }"
+                  >This field cannot be longer than 20 characters.</small
+                >
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_birthDate" jhiTranslate="libraryManagementApp.libraryMember.birthDate">Birth Date</label>
+          <div class="input-group">
+            <input
+              id="field_birthDate"
+              data-cy="birthDate"
+              type="text"
+              class="form-control"
+              name="birthDate"
+              ngbDatepicker
+              #birthDateDp="ngbDatepicker"
+              formControlName="birthDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="birthDateDp.toggle()"><fa-icon icon="calendar-alt" /></button>
+          </div>
+        </div>
+
+        @let addressRef = editForm.get('address')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_address" jhiTranslate="libraryManagementApp.libraryMember.address">Address</label>
+          <input type="text" class="form-control" name="address" id="field_address" data-cy="address" formControlName="address" />
+          @if (addressRef.invalid && (addressRef.dirty || addressRef.touched)) {
+            <div>
+              @if (editForm.get('address')?.errors?.maxlength) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: '255' }"
+                  >This field cannot be longer than 255 characters.</small
+                >
+              }
+            </div>
+          }
+        </div>
+
+        @let registrationDateRef = editForm.get('registrationDate')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_registrationDate" jhiTranslate="libraryManagementApp.libraryMember.registrationDate"
+            >Registration Date</label
+          >
+          <div class="input-group">
+            <input
+              id="field_registrationDate"
+              data-cy="registrationDate"
+              type="text"
+              class="form-control"
+              name="registrationDate"
+              ngbDatepicker
+              #registrationDateDp="ngbDatepicker"
+              formControlName="registrationDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="registrationDateDp.toggle()"><fa-icon icon="calendar-alt" /></button>
+          </div>
+          @if (registrationDateRef.invalid && (registrationDateRef.dirty || registrationDateRef.touched)) {
+            <div>
+              @if (editForm.get('registrationDate')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let statusRef = editForm.get('status')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_status" jhiTranslate="libraryManagementApp.libraryMember.status">Status</label>
+          <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
+            <option [ngValue]="null">{{ 'libraryManagementApp.LibraryMemberStatus.null' | translate }}</option>
+            @for (libraryMemberStatus of libraryMemberStatusValues; track $index) {
+              <option [value]="libraryMemberStatus">
+                {{ 'libraryManagementApp.LibraryMemberStatus.' + libraryMemberStatus | translate }}
+              </option>
+            }
+          </select>
+          @if (statusRef.invalid && (statusRef.dirty || statusRef.touched)) {
+            <div>
+              @if (editForm.get('status')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_internalUser" jhiTranslate="libraryManagementApp.libraryMember.internalUser"
+            >Internal User</label
+          >
+          <select
+            class="form-control"
+            id="field_internalUser"
+            data-cy="internalUser"
+            name="internalUser"
+            formControlName="internalUser"
+            [compareWith]="compareUser"
+          >
+            <option [ngValue]="null"></option>
+            @for (userOption of usersSharedCollection(); track $index) {
+              <option [ngValue]="userOption">{{ userOption.login }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban" />&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving()"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save" />&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (libraryMember(); as libraryMemberRef) {
+      <div>
+        <h2 data-cy="libraryMemberDetailsHeading">
+          <span jhiTranslate="libraryManagementApp.libraryMember.detail.title">Library Member</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ libraryMemberRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.libraryMember.membershipNumber">Membership Number</span></dt>
+          <dd>
+            <span>{{ libraryMemberRef.membershipNumber }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.libraryMember.phoneNumber">Phone Number</span></dt>
+          <dd>
+            <span>{{ libraryMemberRef.phoneNumber }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.libraryMember.birthDate">Birth Date</span></dt>
+          <dd>
+            <span>{{ libraryMemberRef.birthDate | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.libraryMember.address">Address</span></dt>
+          <dd>
+            <span>{{ libraryMemberRef.address }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.libraryMember.registrationDate">Registration Date</span></dt>
+          <dd>
+            <span>{{ libraryMemberRef.registrationDate | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.libraryMember.status">Status</span></dt>
+          <dd>
+            <span [jhiTranslate]="'libraryManagementApp.LibraryMemberStatus.' + (libraryMemberRef.status ?? 'null')">{{
+              { null: '', ACTIVE: 'ACTIVE', BLOCKED: 'BLOCKED', SUSPENDED: 'SUSPENDED' }[libraryMemberRef.status ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.libraryMember.internalUser">Internal User</span></dt>
+          <dd>
+            <span>{{ libraryMemberRef.internalUser?.login }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left" />&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/library-member', libraryMemberRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt" />&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

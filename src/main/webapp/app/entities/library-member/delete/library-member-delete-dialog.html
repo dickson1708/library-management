@@ -1,0 +1,28 @@
+@if (libraryMember) {
+  <form name="deleteForm" (ngSubmit)="confirmDelete(libraryMember.id!)">
+    <div class="modal-header">
+      <h4 class="modal-title" data-cy="libraryMemberDeleteDialogHeading" jhiTranslate="entity.delete.title">Confirm delete operation</h4>
+    </div>
+
+    <div class="modal-body">
+      <jhi-alert-error />
+      <p
+        id="jhi-delete-libraryMember-heading"
+        jhiTranslate="libraryManagementApp.libraryMember.delete.question"
+        [translateValues]="{ id: libraryMember.id }"
+      >
+        Are you sure you want to delete Library Member {{ libraryMember.id }}?
+      </p>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">
+        <fa-icon icon="ban" />&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+      </button>
+
+      <button id="jhi-confirm-delete-libraryMember" data-cy="entityConfirmDeleteButton" type="submit" class="btn btn-danger">
+        <fa-icon icon="times" />&nbsp;<span jhiTranslate="entity.action.delete">Delete</span>
+      </button>
+    </div>
+  </form>
+}

@@ -1,0 +1,78 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (book(); as bookRef) {
+      <div>
+        <h2 data-cy="bookDetailsHeading"><span jhiTranslate="libraryManagementApp.book.detail.title">Book</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ bookRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.book.isbn">Isbn</span></dt>
+          <dd>
+            <span>{{ bookRef.isbn }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.book.title">Title</span></dt>
+          <dd>
+            <span>{{ bookRef.title }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.book.author">Author</span></dt>
+          <dd>
+            <span>{{ bookRef.author }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.book.publisher">Publisher</span></dt>
+          <dd>
+            <span>{{ bookRef.publisher }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.book.publicationDate">Publication Date</span></dt>
+          <dd>
+            <span>{{ bookRef.publicationDate | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.book.language">Language</span></dt>
+          <dd>
+            <span>{{ bookRef.language }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.book.pages">Pages</span></dt>
+          <dd>
+            <span>{{ bookRef.pages }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.book.description">Description</span></dt>
+          <dd>
+            <span>{{ bookRef.description }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.book.coverImage">Cover Image</span></dt>
+          <dd>
+            <span>{{ bookRef.coverImage }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.book.availableForLoan">Available For Loan</span></dt>
+          <dd>
+            <span>{{ bookRef.availableForLoan }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.book.category">Category</span></dt>
+          <dd>
+            @if (book()!.category) {
+              <div>
+                <a [routerLink]="['/category', book()!.category?.id, 'view']">{{ bookRef.category?.name }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left" />&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/book', bookRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt" />&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

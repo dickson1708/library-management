@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (reservation(); as reservationRef) {
+      <div>
+        <h2 data-cy="reservationDetailsHeading"><span jhiTranslate="libraryManagementApp.reservation.detail.title">Reservation</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ reservationRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.reservation.reservationDate">Reservation Date</span></dt>
+          <dd>
+            <span>{{ reservationRef.reservationDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.reservation.expirationDate">Expiration Date</span></dt>
+          <dd>
+            <span>{{ reservationRef.expirationDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.reservation.queuePosition">Queue Position</span></dt>
+          <dd>
+            <span>{{ reservationRef.queuePosition }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.reservation.status">Status</span></dt>
+          <dd>
+            <span [jhiTranslate]="'libraryManagementApp.ReservationStatus.' + (reservationRef.status ?? 'null')">{{
+              { null: '', PENDING: 'PENDING', READY: 'READY', CANCELLED: 'CANCELLED', EXPIRED: 'EXPIRED', COMPLETED: 'COMPLETED' }[
+                reservationRef.status ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.reservation.member">Member</span></dt>
+          <dd>
+            @if (reservation()!.member) {
+              <div>
+                <a [routerLink]="['/library-member', reservation()!.member?.id, 'view']">{{ reservationRef.member?.membershipNumber }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="libraryManagementApp.reservation.book">Book</span></dt>
+          <dd>
+            @if (reservation()!.book) {
+              <div>
+                <a [routerLink]="['/book', reservation()!.book?.id, 'view']">{{ reservationRef.book?.title }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left" />&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/reservation', reservationRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt" />&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

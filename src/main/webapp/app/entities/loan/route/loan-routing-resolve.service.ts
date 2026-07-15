@@ -1,0 +1,30 @@
+import { HttpErrorResponse } from '@angular/common/http';
+import { inject } from '@angular/core';
+import { ActivatedRouteSnapshot, Router } from '@angular/router';
+
+import { EMPTY, Observable, catchError, of } from 'rxjs';
+
+import { ILoan } from '../loan.model';
+import { LoanService } from '../service/loan.service';
+
+const loanResolve = (route: ActivatedRouteSnapshot): Observable<null | ILoan> => {
+  const { id } = route.params;
+  if (id) {
+    const router = inject(Router);
+    const service = inject(LoanService);
+    return service.find(id).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 404) {
+          router.navigate(['404']);
+        } else {
+          router.navigate(['error']);
+        }
+        return EMPTY;
+      }),
+    );
+  }
+
+  return of(null);
+};
+
+export default loanResolve;
