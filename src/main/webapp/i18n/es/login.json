@@ -1,19 +1,22 @@
 {
   "login": {
-    "title": "Iniciar la sesión",
+    "title": "LibraryHub",
+    "subtitle": "Gestiona tu biblioteca, organiza libros y facilita los préstamos como nunca antes.",
     "form": {
+      "title": "Bienvenido de nuevo",
+      "subtitle": "Inicia sesión para continuar",
       "password": "Contraseña",
-      "password.placeholder": "Su contraseña",
-      "rememberme": "Iniciar la sesión automáticamente",
+      "password.placeholder": "Tu contraseña",
+      "rememberme": "Recordarme",
       "button": "Iniciar sesión"
     },
     "messages": {
       "error": {
-        "authentication": "<strong>¡El inicio de sesión ha fallado!</strong> Por favor, revise las credenciales e intente de nuevo."
+        "authentication": "<strong>¡Error al iniciar sesión!</strong> Comprueba tus credenciales e inténtalo de nuevo."
       }
     },
     "password": {
-      "forgot": "¿Ha olvidado su contraseña?"
+      "forgot": "¿Has olvidado tu contraseña?"
     }
   }
 }

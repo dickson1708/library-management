@@ -1,7 +1,10 @@
 {
   "login": {
-    "title": "Sign in",
+    "title": "LibraryHub",
+    "subtitle": "Manage your library, organize books and make borrowing easier than ever.",
     "form": {
+      "title": "Welcome Back",
+      "subtitle": "Sign in to continue",
       "password": "Password",
       "password.placeholder": "Your password",
       "rememberme": "Remember me",

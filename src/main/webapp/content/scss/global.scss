@@ -1,6 +1,7 @@
 @import 'bootstrap-variables';
 @import 'bootstrap/scss/functions';
 @import 'bootstrap/scss/variables';
+@import 'abstracts/variables';
 
 /* ==============================================================
 Bootstrap tweaks
@@ -11,7 +12,8 @@ h1,
 h2,
 h3,
 h4 {
-  font-weight: 300;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
 }
 
 /* Increase contrast of links to get 100% on Lighthouse Accessibility Audit. Override this color if you want to change the link color, or use a Bootswatch theme */
