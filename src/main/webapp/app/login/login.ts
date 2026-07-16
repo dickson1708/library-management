@@ -13,6 +13,7 @@ import { TranslateDirective } from 'app/shared/language';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [TranslateDirective, TranslateModule, ReactiveFormsModule, RouterLink],
   templateUrl: './login.html',
+  styleUrl: './login.scss',
 })
 export default class Login implements OnInit, AfterViewInit {
   username = viewChild.required<ElementRef>('username');
