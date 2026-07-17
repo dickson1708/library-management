@@ -1,0 +1,104 @@
+.sidebar {
+  width: 280px;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  background: #ffffff;
+
+  border-right: 1px solid #ececec;
+}
+
+.sidebar-header {
+  padding: 2rem;
+
+  border-bottom: 1px solid #ececec;
+
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sidebar-logo {
+  width: 52px;
+  height: 52px;
+
+  border-radius: 14px;
+}
+
+.sidebar-brand {
+  h2 {
+    margin: 0;
+
+    font-size: 1.15rem;
+
+    font-weight: 700;
+  }
+
+  span {
+    color: #8a8a8a;
+
+    font-size: 0.85rem;
+  }
+}
+
+.sidebar-menu {
+  flex: 1;
+
+  overflow: auto;
+
+  padding: 1.5rem;
+}
+
+.sidebar-section-title {
+  display: block;
+
+  margin-bottom: 0.75rem;
+
+  font-size: 0.75rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+
+  color: #a0a0a0;
+}
+
+.sidebar-menu ul {
+  list-style: none;
+
+  padding: 0;
+
+  margin: 0 0 2rem;
+}
+
+.sidebar-menu li {
+  margin-bottom: 0.35rem;
+}
+
+.sidebar-menu a {
+  display: flex;
+
+  align-items: center;
+
+  text-decoration: none;
+
+  color: #444;
+
+  padding: 0.8rem 1rem;
+
+  border-radius: 12px;
+
+  transition: 0.25s;
+}
+
+.sidebar-menu a:hover {
+  background: #f4f4f4;
+}
+
+.sidebar-footer {
+  padding: 1.5rem;
+
+  border-top: 1px solid #ececec;
+}

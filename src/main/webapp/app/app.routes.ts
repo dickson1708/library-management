@@ -12,11 +12,6 @@ const routes: Routes = [
     title: 'home.title',
   },
   {
-    path: '',
-    loadComponent: () => import('./layouts/navbar/navbar'),
-    outlet: 'navbar',
-  },
-  {
     path: 'admin',
     data: {
       authorities: [Authority.ADMIN],
