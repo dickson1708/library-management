@@ -1,21 +1,27 @@
 {
   "global": {
-    "title": "Library-management",
+    "title": "LibraryHub",
+    "subtitle": "Digital Library",
     "browsehappy": "You are using an <strong>outdated</strong> browser. Please <a href=\"https://browsehappy.com/?locale=en\">upgrade your browser</a> to improve your experience.",
+    "section": {
+      "general": "OVERVIEW",
+      "library": "LIBRARY",
+      "admin": "MANAGEMENT",
+      "account": "ACCOUNT"
+    },
     "menu": {
-      "home": "Home",
+      "home": "Darshboard",
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entities",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)",
-        "adminAuthority": "Authority",
-        "libraryMember": "Library Member",
-        "category": "Category",
-        "book": "Book",
-        "bookCopy": "Book Copy",
-        "loan": "Loan",
-        "reservation": "Reservation",
-        "review": "Review"
+        "libraryMember": "Members",
+        "category": "Categories",
+        "book": "Books",
+        "bookCopy": "Books Copies",
+        "loan": "Loans",
+        "reservation": "Reservations",
+        "review": "Reviews"
       },
       "account": {
         "main": "Account",
@@ -28,6 +34,7 @@
       },
       "admin": {
         "main": "Administration",
+        "adminAuthority": "Authorities",
         "userManagement": "User management",
         "tracker": "User tracker",
         "metrics": "Metrics",

@@ -1,21 +1,27 @@
 {
   "global": {
-    "title": "Library-management",
+    "title": "LibraryHub",
+    "subtitle": "Biblioteca Digital",
     "browsehappy": "Está usando un navegador <strong>no actualizado</strong>. Por favor, <a href=\"https://browsehappy.com/?locale=es\">actualice su navegador</a> para mejorar su experiencia.",
+    "section": {
+      "general": "GENERAL",
+      "library": "BIBLIOTECA",
+      "admin": "ADMINISTRACIÓN",
+      "account": "CUENTA"
+    },
     "menu": {
       "home": "Inicio",
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entidades",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)",
-        "adminAuthority": "Authority",
-        "libraryMember": "Library Member",
-        "category": "Category",
-        "book": "Book",
-        "bookCopy": "Book Copy",
-        "loan": "Loan",
-        "reservation": "Reservation",
-        "review": "Review"
+        "libraryMember": "Miembros",
+        "category": "Categorías",
+        "book": "Libros",
+        "bookCopy": "Copias de Libros",
+        "loan": "Préstamos",
+        "reservation": "Reservas",
+        "review": "Reseñas"
       },
       "account": {
         "main": "Cuenta",
@@ -28,6 +34,7 @@
       },
       "admin": {
         "main": "Administración",
+        "adminAuthority": "Autoridades",
         "userManagement": "Gestión de usuarios",
         "tracker": "Registro de usuarios",
         "metrics": "Métricas",

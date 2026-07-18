@@ -1,52 +1,168 @@
-<nav class="sidebar">
-  <!-- ========================= -->
-  <!-- HEADER -->
-  <!-- ========================= -->
+@if (account() !== null) {
+  <nav class="sidebar">
+    <!-- ========================= -->
+    <!-- HEADER -->
+    <!-- ========================= -->
 
-  <div class="sidebar-header">
-    <img src="/content/images/library-icon.png" alt="LibraryHub" class="sidebar-logo" />
+    <a routerLink="/" class="sidebar-header-link">
+      <div class="sidebar-header">
+        <img src="/content/images/library-icon.png" alt="LibraryHub" class="sidebar-logo" />
 
-    <div class="sidebar-brand">
-      <h2>LibraryHub</h2>
-      <span>Digital Library</span>
+        <div class="sidebar-brand">
+          <h2 jhiTranslate="global.title">LibraryHub</h2>
+          <span jhiTranslate="global.subtitle">Digital Library</span>
+        </div>
+      </div>
+      <jhi-language-switcher />
+    </a>
+
+    <!-- ========================= -->
+    <!-- MENU -->
+    <!-- ========================= -->
+
+    <div class="sidebar-menu">
+      <span class="sidebar-section-title" jhiTranslate="global.section.general"> OVERVIEW </span>
+
+      <ul>
+        <li>
+          <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <fa-icon icon="chart-line" />
+            <span jhiTranslate="global.menu.home"> Dashboard </span>
+          </a>
+        </li>
+      </ul>
+
+      <span class="sidebar-section-title" jhiTranslate="global.section.library"> LIBRARY </span>
+
+      <ul>
+        <li>
+          <a routerLink="/book" routerLinkActive="active">
+            <fa-icon icon="book" />
+            <span jhiTranslate="global.menu.entities.book"> Books </span>
+          </a>
+        </li>
+
+        <li>
+          <a routerLink="/category" routerLinkActive="active">
+            <fa-icon icon="tags" />
+            <span jhiTranslate="global.menu.entities.category">Categories</span>
+          </a>
+        </li>
+
+        <li>
+          <a routerLink="/library-member" routerLinkActive="active">
+            <fa-icon icon="users" />
+            <span jhiTranslate="global.menu.entities.libraryMember">Members</span>
+          </a>
+        </li>
+
+        <li>
+          <a routerLink="/loan" routerLinkActive="active">
+            <fa-icon icon="handshake" />
+            <span jhiTranslate="global.menu.entities.loan">Loans</span>
+          </a>
+        </li>
+
+        <li>
+          <a routerLink="/reservation" routerLinkActive="active">
+            <fa-icon icon="calendar-check" />
+            <span jhiTranslate="global.menu.entities.reservation">Reservations</span>
+          </a>
+        </li>
+
+        <li>
+          <a routerLink="/review" routerLinkActive="active">
+            <fa-icon icon="star" />
+            <span jhiTranslate="global.menu.entities.review">Reviews</span>
+          </a>
+        </li>
+      </ul>
+
+      <div *jhiHasAnyAuthority="'ROLE_ADMIN'">
+        <span class="sidebar-section-title" jhiTranslate="global.section.admin"> MANAGEMENT </span>
+
+        <ul>
+          <li>
+            <a routerLink="/authority" routerLinkActive="active">
+              <fa-icon icon="shield-halved" />
+              <span jhiTranslate="global.menu.admin.adminAuthority">Authorities</span>
+            </a>
+          </li>
+
+          <li>
+            <a routerLink="/user-management" routerLinkActive="active">
+              <fa-icon icon="user-gear" />
+              <span jhiTranslate="global.menu.admin.userManagement">User Management</span>
+            </a>
+          </li>
+
+          <li>
+            <a routerLink="/admin/metrics" routerLinkActive="active">
+              <fa-icon icon="chart-column" />
+              <span jhiTranslate="global.menu.admin.metrics">Metrics</span>
+            </a>
+          </li>
+
+          <li>
+            <a routerLink="/admin/health" routerLinkActive="active">
+              <fa-icon icon="heart-pulse" />
+              <span jhiTranslate="global.menu.admin.health">Health</span>
+            </a>
+          </li>
+
+          <li>
+            <a routerLink="/admin/configuration" routerLinkActive="active">
+              <fa-icon icon="gear" />
+              <span jhiTranslate="global.menu.admin.configuration">Configuration</span>
+            </a>
+          </li>
+
+          <li>
+            <a routerLink="/admin/logs" routerLinkActive="active">
+              <fa-icon icon="file-lines" />
+              <span jhiTranslate="global.menu.admin.logs">Logs</span>
+            </a>
+          </li>
+
+          <li>
+            <a routerLink="/admin/docs" routerLinkActive="active">
+              <fa-icon icon="code" />
+              <span jhiTranslate="global.menu.admin.apidocs">API</span>
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
 
-  <!-- ========================= -->
-  <!-- MENU -->
-  <!-- ========================= -->
+    <!-- ========================= -->
+    <!-- FOOTER -->
+    <!-- ========================= -->
 
-  <div class="sidebar-menu">
-    <span class="sidebar-section-title"> GENERAL </span>
+    <div class="sidebar-footer">
+      <div class="sidebar-menu">
+        <span class="sidebar-section-title" jhiTranslate="global.section.account">ACCOUNT</span>
 
-    <ul>
-      <li>
-        <a href="#"> Dashboard </a>
-      </li>
-    </ul>
-
-    <span class="sidebar-section-title"> LIBRARY </span>
-
-    <ul>
-      <li><a href="#">Books</a></li>
-
-      <li><a href="#">Categories</a></li>
-
-      <li><a href="#">Members</a></li>
-
-      <li><a href="#">Loans</a></li>
-
-      <li><a href="#">Reservations</a></li>
-
-      <li><a href="#">Reviews</a></li>
-
-      <li><a href="#">Administration</a></li>
-    </ul>
-  </div>
-
-  <!-- ========================= -->
-  <!-- FOOTER -->
-  <!-- ========================= -->
-
-  <div class="sidebar-footer">Account</div>
-</nav>
+        <ul>
+          <li>
+            <a routerLink="/account/settings" routerLinkActive="active">
+              <fa-icon icon="sliders" />
+              <span jhiTranslate="global.menu.account.settings">Settings</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/account/password" routerLinkActive="active">
+              <fa-icon icon="key" />
+              <span jhiTranslate="global.menu.account.password">Password</span>
+            </a>
+          </li>
+          <li>
+            <a (click)="logout()" id="logout" data-cy="logout">
+              <fa-icon icon="right-from-bracket" />
+              <span jhiTranslate="global.menu.account.logout">Sign out</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+}
