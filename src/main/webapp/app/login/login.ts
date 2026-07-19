@@ -5,13 +5,14 @@ import { Router, RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { AccountService } from 'app/core/auth/account.service';
+import LanguageSwitcher from 'app/layouts/language-switcher/language-switcher';
 import { LoginService } from 'app/login/login.service';
 import { TranslateDirective } from 'app/shared/language';
 
 @Component({
   selector: 'jhi-login',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [TranslateDirective, TranslateModule, ReactiveFormsModule, RouterLink],
+  imports: [TranslateDirective, TranslateModule, ReactiveFormsModule, RouterLink, LanguageSwitcher],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })

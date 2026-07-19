@@ -5,9 +5,8 @@
 .login-page {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 1fr 480px;
+  grid-template-columns: 1fr 580px;
   background: var(--background);
-  border-radius: var(--radius-sm);
 }
 
 /* ==========================================================
@@ -17,7 +16,6 @@
 .login-left {
   position: relative;
   overflow: hidden;
-  border-radius: var(--radius-sm);
 
   display: flex;
   align-items: center;

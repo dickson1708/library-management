@@ -1,0 +1,22 @@
+@if (languages && languages.length > 1) {
+  <div class="language-switcher">
+    <div class="language-label">
+      <fa-icon icon="globe"></fa-icon>
+      <span>Language</span>
+    </div>
+
+    <div class="language-buttons">
+      @for (language of languages; track $index) {
+        <button type="button" class="language-button" [jhiActiveMenu]="language" (click)="changeLanguage(language)">
+          <span class="flag">
+            {{ language === 'es' ? '🇪🇸' : '🇺🇸' }}
+          </span>
+
+          <span>
+            {{ language | findLanguageFromKey }}
+          </span>
+        </button>
+      }
+    </div>
+  </div>
+}
